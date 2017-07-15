@@ -6,8 +6,31 @@ import wx.adv
 import os
 import sys
 
-sys.path.append(os.path.dirname(__file__))
-os.chdir(os.path.dirname(__file__))
+
+
+"""
+Packages:
+    wxpython 4.0.0a3,
+    win32com
+
+Hotkeys:
+    Alt+e, show dialog, extract tags
+    Alt+a, activate dialog, without extracting tags
+    ---Alt+q, quit the program -- deleted..
+    Esc, minimize the dialog to system tray
+    Enter, 
+        add the tags, 
+            e.g.:
+                'TagA, TagB, TagC'
+                'TagA TagB TagC'
+        set the tags with : in any place of the command 
+        (existing tags will be removed)
+            e.g.:
+                'TagA TagB TagC:'
+                'TagA: TagB TagC'
+"""
+
+
 
 class MyFrame(wx.Frame):
     """ We simply derive a new class of Frame. """
@@ -49,8 +72,7 @@ class MyFrame(wx.Frame):
             from matags_utils import MaTags
             self.matags = MaTags()
         except Exception as e:
-            print(e.args[0])
-            self.textbox.ChangeValue(e.args[0].decode('utf8'))
+            self.textbox.ChangeValue(e.args[0].decode('utf8', 'ignore'))
             self.textbox.Disable()
 
     def check_key(self, evt):
@@ -58,7 +80,7 @@ class MyFrame(wx.Frame):
         hotkeys:
             Alt+e, show dialog, also extract tags
             Alt+a, show dialog, without extracting tags
-            ---Alt+q, quit the program
+            ---Alt+q, quit the program -- deleted..
             Esc, minimize the dialog to system tray
             Enter, add the tags
         """
