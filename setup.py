@@ -7,4 +7,4 @@ setup(
             "dll_excludes": ["MSVCP90.dll", "HID.DLL", "w9xpopen.exe"],
                     },
                     },
-    console=['matags.pyw'])
+    console=['matags.py'])
