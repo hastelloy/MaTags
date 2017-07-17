@@ -5,17 +5,17 @@ import wx.adv
 
 import os
 import sys
-
-
+from matags_utils import MaTags
 
 """
-Packages:
+## Packages:
     wxpython 4.0.0a3,
     win32com
 
-Hotkeys:
+## Hotkeys:
     Alt+e, show dialog, extract tags
     Alt+a, activate dialog, without extracting tags
+    Alt+r, refresh tags
     ---Alt+q, quit the program -- deleted..
     Esc, minimize the dialog to system tray
     Enter, 
@@ -28,6 +28,8 @@ Hotkeys:
             e.g.:
                 'TagA TagB TagC:'
                 'TagA: TagB TagC'
+## Usages:
+
 """
 
 
@@ -62,18 +64,19 @@ class MyFrame(wx.Frame):
         #     id=self.hotkeys['quit'][0])
         self.Bind(wx.EVT_HOTKEY, self.on_activate, 
             id=self.hotkeys['activate'][0])
+        self.Bind(wx.EVT_HOTKEY, self.on_activate, 
+            id=self.hotkeys['refresh'][0])
         self.textbox.Bind(wx.EVT_CHAR, self.check_key)
         # do not use EVT_KEY_DOWN, 
         # it becomes difficult to get lower case
         # self.textbox.Bind(wx.EVT_KEY_DOWN, self.check_key)
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Bind(wx.EVT_ICONIZE, self.on_iconify)
-        try:
-            from matags_utils import MaTags
-            self.matags = MaTags()
-        except Exception as e:
-            self.textbox.ChangeValue(e.args[0].decode('utf8', 'ignore'))
-            self.textbox.Disable()
+        self.matags = MaTags()
+        # try:
+        # except Exception as e:
+        #     self.textbox.ChangeValue(e.args[0].decode('utf8', 'ignore'))
+        #     self.textbox.Disable()
 
     def check_key(self, evt):
         """
@@ -111,6 +114,8 @@ class MyFrame(wx.Frame):
                             wx.NewId(), wx.MOD_ALT, 0x45), # alt+e
                         'activate': (
                             wx.NewId(), wx.MOD_ALT, 0x41), # alt+a
+                        'refresh': (
+                            wx.NewId(), wx.MOD_ALT, 0x52), # alt+r
                         # 'quit': (
                         #     wx.NewId(), wx.MOD_ALT, 0x51), # alt+q
                         }
@@ -133,9 +138,18 @@ class MyFrame(wx.Frame):
         self.Centre()
         tags_str = self.matags.extract()
         self.textbox.ChangeValue(tags_str)
-    
+
+    def on_refresh(self, evt):
+        """
+        """
+        self.Show()
+        self.Iconize(False)
+        self.Raise() #bring to front
+        self.Centre()
+        self.matags.refresh()
+
     def set_tags(self, tags_str):
-        self.matags.set_tags(tags_str)
+        self.matags.set(tags_str)
 
     def append_tags(self, tags_str):
         self.matags.append(tags_str)
