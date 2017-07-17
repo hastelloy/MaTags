@@ -1,4 +1,4 @@
-#MaTags
+# MaTags
 Inspired by [Launchy](https://launchy.net/) and [Categorize Plus](https://www.veranosoft.com/), this application is developed in Python for easy tagging (adding categories) Outlook messages.
 
 It is tested under Window 7/10 and Office 365.

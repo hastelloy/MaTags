@@ -4,9 +4,8 @@ class OutlookConnectError(Exception):
     pass
 
 class MaTags(object):
-    outlook = win32com.client.Dispatch("Outlook.Application")
     try:
-        pass
+        outlook = win32com.client.Dispatch("Outlook.Application")
     except Exception as e:
         raise OutlookConnectError("Outlook not connected")
 
