@@ -89,7 +89,7 @@ class MyFrame(wx.Frame):
         #     id=self.hotkeys['quit'][0])
         self.Bind(wx.EVT_HOTKEY, self.on_activate, 
             id=self.hotkeys['activate'][0])
-        self.Bind(wx.EVT_HOTKEY, self.on_activate, 
+        self.Bind(wx.EVT_HOTKEY, self.on_refresh, 
             id=self.hotkeys['refresh'][0])
         self.textbox.Bind(wx.EVT_CHAR, self.check_key)
         # do not use EVT_KEY_DOWN, 
