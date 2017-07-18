@@ -171,7 +171,8 @@ class MyFrame(wx.Frame):
         self.Iconize(False)
         self.Raise() #bring to front
         self.Centre()
-        self.matags.refresh()
+        tags_str = self.matags.refresh()
+        self.textbox.ChangeValue(tags_str)
 
     def set_tags(self, tags_str):
         self.matags.set(tags_str)

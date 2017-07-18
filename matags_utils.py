@@ -58,6 +58,7 @@ class MaTags(object):
 
         tags_str = self.extract()
         self.set(tags_str)
+        return tags_str
 
     def _tags_to_str(self, tags):
         return ','.join(tags)
