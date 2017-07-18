@@ -24,7 +24,9 @@ It is tested under Window 7/10 and Office 365.
             e.g.:
                 `TagA TagB TagC:`
                 `TagA: TagB TagC`
+
 ## Usages:
+
 ### append tags:
 - select all the messages to be tagged in Outlook,
 - **Alt+e** to extract existing tags, input the tags (seperated with space or comma) and press **Enter**
@@ -42,6 +44,13 @@ Please note existing tags will be replaced with the new tags.
 - select the messages including both the messages already tagged and the messages to be tagged (with Ctrl or Shift) in Outlook 
 - **Alt+r**, all the messages to be tagged will be refreshed with the existing tags
 
+### delete all tags
+- input : and press **Enter**
+
+## delete part of tags
+- **Alt+e**, 
+- remove/edit the tags and input :, press **Enter**
+
 ## To make Windows EXE
 - install [py2exe](http://py2exe.org/)
-- run `python setup.py py2exe`
+- run `python setup.py`
