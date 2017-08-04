@@ -64,7 +64,7 @@ class MyFrame(wx.Frame):
     def __init__(self, parent, title):
         style = wx.DEFAULT_FRAME_STYLE & ~(
             wx.RESIZE_BORDER | wx.MAXIMIZE_BOX |
-            wx.MINIMIZE_BOX)
+            wx.MINIMIZE_BOX|wx.CLOSE_BOX)
 
         wx.Frame.__init__(self, parent, title=title, 
             style=style, size=(400,60))
@@ -85,8 +85,8 @@ class MyFrame(wx.Frame):
         self.reg_hot_keys()        
         self.Bind(wx.EVT_HOTKEY, self.on_extract_tag, 
             id=self.hotkeys['extract_tag'][0])
-        # self.Bind(wx.EVT_HOTKEY, self.on_close, 
-        #     id=self.hotkeys['quit'][0])
+        self.Bind(wx.EVT_HOTKEY, self.on_close, 
+            id=self.hotkeys['quit'][0])
         self.Bind(wx.EVT_HOTKEY, self.on_activate, 
             id=self.hotkeys['activate'][0])
         self.Bind(wx.EVT_HOTKEY, self.on_refresh, 
@@ -95,7 +95,7 @@ class MyFrame(wx.Frame):
         # do not use EVT_KEY_DOWN, 
         # it becomes difficult to get lower case
         # self.textbox.Bind(wx.EVT_KEY_DOWN, self.check_key)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
+        # self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Bind(wx.EVT_ICONIZE, self.on_iconify)
         self.matags = MaTags()
         # try:
@@ -141,8 +141,8 @@ class MyFrame(wx.Frame):
                             wx.NewId(), wx.MOD_ALT, 0x41), # alt+a
                         'refresh': (
                             wx.NewId(), wx.MOD_ALT, 0x52), # alt+r
-                        # 'quit': (
-                        #     wx.NewId(), wx.MOD_ALT, 0x51), # alt+q
+                        'quit': (
+                            wx.NewId(), wx.MOD_ALT, 0x51), # alt+q
                         }
         # https://msdn.microsoft.com/en-us/library/windows/desktop/ms646309(v=vs.85).aspx
         # https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx

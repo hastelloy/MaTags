@@ -18,6 +18,7 @@ class MaTags(object):
         all the tags from selected messages will be extracted
         """
         selected = self.outlook.ActiveExplorer().Selection
+        # selected = self.outlook.Selection()
         tags = set()
         for item in selected:
             # print(item.Subject, item.To, tags_str)
